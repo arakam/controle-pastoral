@@ -1,32 +1,35 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { supabase } from '@/lib/supabase'
 import { useRouter } from 'next/navigation'
+import { useSupabase } from '@/components/SupabaseProvider'
 
 export default function RequireAdmin({ children }: { children: React.ReactNode }) {
   const router = useRouter()
+  const { session, supabase } = useSupabase() //  fora do useEffect
   const [verificando, setVerificando] = useState(true)
   const [autorizado, setAutorizado] = useState(false)
 
   useEffect(() => {
     const verificar = async () => {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser()
+      const email = session?.user?.email
+      //const tipo = session?.user?.tipo
+      console.log('Email logado:', email)
+      //console.log('Tipo logado:', tipo)
 
-      if (!user) {
+      if (!email) {
         router.push('/login')
         return
       }
 
-      const { data: pessoas, error } = await supabase
+      const { data: pessoa, error } = await supabase
         .from('pessoas')
         .select('tipo')
-        .eq('email', user.email)
-        .limit(1)
+        .ilike('email', email!) //busca case-insensitive
+        .maybeSingle()
 
-      if (!error && pessoas && pessoas.length > 0 && pessoas[0].tipo === 'administrador') {
+      console.log('Pessoa encontrada:', pessoa)
+      if (!error && pessoa?.tipo === 'administrador') {
         setAutorizado(true)
       } else {
         router.push('/login')
@@ -36,7 +39,7 @@ export default function RequireAdmin({ children }: { children: React.ReactNode }
     }
 
     verificar()
-  }, [router])
+  }, [router, session, supabase]) // inclua dependências aqui
 
   if (verificando) {
     return <p className="text-center mt-10">Verificando acesso...</p>

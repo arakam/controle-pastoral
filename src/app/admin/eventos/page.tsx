@@ -1,10 +1,19 @@
 'use client'
 
-import RequireAdmin from '@/components/RequireAdmin'
-
 import { useEffect, useState } from 'react'
-import { supabase } from '@/lib/supabase'
 import Link from 'next/link'
+import RequireAdmin from '@/components/RequireAdmin'
+import BotaoLogout from '@/components/BotaoLogout'
+import { supabase } from '@/lib/supabase'
+import { useSupabase } from '@/components/SupabaseProvider'
+import {
+  CalendarDays,
+  MapPin,
+  LogOut,
+  Plus,
+  Eye,
+  QrCode,
+} from 'lucide-react'
 
 interface Evento {
   id: string
@@ -16,6 +25,8 @@ interface Evento {
 export default function ListaEventos() {
   const [eventos, setEventos] = useState<Evento[]>([])
   const [erro, setErro] = useState('')
+  const { session } = useSupabase()
+  const email = session?.user?.email
 
   useEffect(() => {
     const buscarEventos = async () => {
@@ -32,45 +43,73 @@ export default function ListaEventos() {
   }, [])
 
   return (
-<RequireAdmin>
-    <div className="max-w-4xl mx-auto mt-10 p-4">
-      <h1 className="text-3xl font-bold mb-6">Eventos Cadastrados</h1>
+    <RequireAdmin>
+      <div className="min-h-screen bg-gray-50">
+        {/* Header */}
+        <header className="bg-white shadow px-6 py-4 flex justify-between items-center">
+          <h1 className="text-2xl font-bold text-gray-800">Controle Pastoral</h1>
+          <div className="flex items-center gap-4 text-sm text-gray-600">
+            <span className="hidden sm:inline">{email}</span>
+            <BotaoLogout />
+          </div>
+        </header>
 
-      <Link
-        href="/admin/eventos/novo"
-        className="inline-block mb-4 text-blue-600 underline"
-      >
-        + Novo Evento
-      </Link>
+        {/* Conteúdo */}
+        <main className="max-w-4xl mx-auto px-4 py-8">
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-xl font-semibold flex items-center gap-2">
+              <CalendarDays className="w-5 h-5 text-blue-600" />
+              Eventos Cadastrados
+            </h2>
 
-      {erro && <p className="text-red-500">{erro}</p>}
+            <Link
+              href="/admin/eventos/novo"
+              className="flex items-center gap-1 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 text-sm"
+            >
+              <Plus className="w-4 h-4" />
+              Novo Evento
+            </Link>
+          </div>
 
-      <ul className="space-y-4">
-        {eventos.map((evento) => (
-          <li key={evento.id} className="p-4 border rounded shadow bg-white">
-            <h2 className="text-xl font-semibold">{evento.nome}</h2>
-            <p>Data: {evento.data}</p>
-            <p>Local: {evento.local}</p>
+          {erro && <p className="text-red-500 mb-4">{erro}</p>}
 
-            <div className="mt-2">
-              <Link
-                href={`/admin/eventos/${evento.id}/checkins`}
-                className="text-sm text-green-700 underline mr-4"
+          <ul className="grid gap-4">
+            {eventos.map((evento) => (
+              <li
+                key={evento.id}
+                className="bg-white rounded-xl shadow p-4 border border-gray-200"
               >
-                Ver Check-ins
-              </Link>
+                <div className="flex justify-between items-center mb-2">
+                  <h3 className="text-lg font-bold text-gray-800">{evento.nome}</h3>
+                  <span className="text-sm text-gray-500 flex items-center gap-1">
+                    <CalendarDays className="w-4 h-4" /> {evento.data}
+                  </span>
+                </div>
+                <p className="text-sm text-gray-600 flex items-center gap-1">
+                  <MapPin className="w-4 h-4" /> {evento.local}
+                </p>
 
-              <Link
-                href={`/checkin/${evento.id}`}
-                className="text-sm text-blue-700 underline"
-              >
-                Tela de Check-in
-              </Link>
-            </div>
-          </li>
-        ))}
-      </ul>
-    </div>
-</RequireAdmin>
+                <div className="mt-3 flex gap-4 text-sm">
+                  <Link
+                    href={`/admin/eventos/${evento.id}/checkins`}
+                    className="text-green-700 hover:underline flex items-center gap-1"
+                  >
+                    <Eye className="w-4 h-4" />
+                    Ver Check-ins
+                  </Link>
+                  <Link
+                    href={`/checkin/${evento.id}`}
+                    className="text-blue-700 hover:underline flex items-center gap-1"
+                  >
+                    <QrCode className="w-4 h-4" />
+                    Tela de Check-in
+                  </Link>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </main>
+      </div>
+    </RequireAdmin>
   )
 }
