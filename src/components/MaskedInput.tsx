@@ -1,15 +1,29 @@
 'use client'
 
-import InputMask from 'react-input-mask'
+import React, { forwardRef } from 'react'
+import InputMask from 'react-input-mask-next'
 
 interface MaskedInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   mask: string
 }
 
-export default function MaskedInput({ mask, ...props }: MaskedInputProps) {
-  return (
-    <InputMask mask={mask} {...props}>
-      {(inputProps: any) => <input {...inputProps} />}
-    </InputMask>
-  )
-}
+const MaskedInput = forwardRef<HTMLInputElement, MaskedInputProps>(
+  ({ mask, className, ...rest }, ref) => {
+    return (
+      <InputMask mask={mask} {...rest}>
+        {(inputProps) => (
+          <input
+            {...inputProps}
+            ref={ref}
+            className={className}
+            placeholder={rest.placeholder}
+            disabled={rest.disabled}
+          />
+        )}
+      </InputMask>
+    )
+  }
+)
+
+MaskedInput.displayName = 'MaskedInput'
+export default MaskedInput
