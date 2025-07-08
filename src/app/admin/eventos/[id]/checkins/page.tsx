@@ -34,7 +34,12 @@ export default function ListaCheckinsPorEvento() {
       if (error) {
         setErro('Erro ao buscar check-ins')
       } else {
-        setCheckins(data as Checkin[])
+        const convertidos = (data || []).map((c: any) => ({
+          ...c,
+          pessoa: Array.isArray(c.pessoa) ? c.pessoa[0] : c.pessoa
+        }))
+        setCheckins(convertidos)
+
       }
     }
 
