@@ -9,13 +9,17 @@ export default function RequireAuth({ children }: { children: React.ReactNode })
   const router = useRouter()
   const pathname = usePathname()
 
+  // Rotas públicas que não exigem login
+  const rotasPublicas = ['/login', '/checkin', '/cadastro']
+  const isPublica = rotasPublicas.some((path) => pathname.startsWith(path))
+
   useEffect(() => {
-    if (!session && pathname !== '/login') {
+    if (!session && !isPublica) {
       router.replace('/login')
     }
-  }, [session, pathname, router])
+  }, [session, pathname, isPublica, router])
 
-  if (!session && pathname !== '/login') {
+  if (!session && !isPublica) {
     return <p className="text-center mt-10">Verificando sessão...</p>
   }
 
