@@ -81,7 +81,7 @@ export default function Empresas() {
                   href={`tel:${empresa.telefone}`}
                   className="bg-blue-600 text-white px-4 py-2 rounded-md flex items-center gap-2 text-sm hover:bg-blue-700"
                 >
-                  <Phone size={16} /> Ligar
+                  <Phone size={16} /> 
                 </a>
                 <a
                   href={`https://wa.me/55${empresa.whatsapp}`}
@@ -89,13 +89,13 @@ export default function Empresas() {
                   rel="noopener noreferrer"
                   className="bg-blue-600 text-white px-4 py-2 rounded-md flex items-center gap-2 text-sm hover:bg-blue-700"
                 >
-                  <MessageCircle size={16} /> WhatsApp
+                  <MessageCircle size={16} /> 
                 </a>
                 <a
                   href={`mailto:${empresa.email}`}
                   className="bg-blue-600 text-white px-4 py-2 rounded-md flex items-center gap-2 text-sm hover:bg-blue-700"
                 >
-                  <Mail size={16} /> E-mail
+                  <Mail size={16} />
                 </a>
               </div>
             </div>
