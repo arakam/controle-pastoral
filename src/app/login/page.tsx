@@ -9,15 +9,45 @@ export default function LoginPage() {
   const [email, setEmail] = useState('')
   const [senha, setSenha] = useState('')
   const [mensagem, setMensagem] = useState('')
+  const [carregando, setCarregando] = useState(false)
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
-    const { error } = await supabase.auth.signInWithPassword({
+    setMensagem('')
+    setCarregando(true)
+
+    const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
       email,
       password: senha,
     })
-    if (error) setMensagem('Credenciais inválidas')
-    else router.push('/admin/eventos')
+
+    if (authError || !authData.session) {
+      setMensagem('❌ E-mail ou senha inválidos.')
+      setCarregando(false)
+      return
+    }
+
+    const { data: pessoas, error: pessoaErro } = await supabase
+      .from('pessoas')
+      .select('tipo')
+      .eq('email', email)
+      .limit(1)
+
+    if (pessoaErro || !pessoas || pessoas.length === 0) {
+      setMensagem('❌ Usuário não encontrado na base.')
+      setCarregando(false)
+      return
+    }
+
+    const tipo = pessoas[0].tipo
+
+    if (tipo === 'administrador') {
+      router.push('/admin/eventos')
+    } else {
+      router.push('/dashboard')
+    }
+
+    setCarregando(false)
   }
 
   return (
@@ -60,9 +90,36 @@ export default function LoginPage() {
 
           <button
             type="submit"
-            className="w-full bg-blue-700 text-white py-2 rounded-md font-semibold hover:bg-blue-800"
+            disabled={carregando}
+            className="w-full bg-blue-700 text-white py-2 rounded-md font-semibold hover:bg-blue-800 disabled:opacity-50 flex justify-center items-center gap-2"
           >
-            Entrar
+            {carregando ? (
+              <>
+                <svg
+                  className="animate-spin h-4 w-4 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  />
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8v4l3-3-3-3v4a10 10 0 100 20v-4l-3 3 3 3v-4a8 8 0 01-8-8z"
+                  />
+                </svg>
+                Entrando...
+              </>
+            ) : (
+              'Entrar'
+            )}
           </button>
 
           <button
