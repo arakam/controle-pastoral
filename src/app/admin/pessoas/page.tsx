@@ -48,7 +48,7 @@ export default function ListaPessoas() {
     <RequireAdmin>
       <AdminLayout>
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-semibold flex items-center gap-2">
+          <h2 className="text-xl font-semibold text-gray-800  flex items-center gap-2">
             <UserRound className="w-5 h-5 text-blue-600" />
             Pessoas Cadastradas
           </h2>
@@ -83,7 +83,7 @@ export default function ListaPessoas() {
               className="bg-white rounded-xl shadow p-4 border border-gray-200"
             >
               <div className="flex justify-between items-center mb-2">
-                <h3 className="text-lg font-bold text-gray-800">{pessoa.nome}</h3>
+                <h3 className="text-lg font-bold text-gray-800  text-gray-800">{pessoa.nome}</h3>
                 <Link
                   href={`/admin/pessoas/${pessoa.id}`}
                   className="text-sm text-blue-700 hover:underline flex items-center gap-1"

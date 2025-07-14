@@ -8,7 +8,7 @@ export default function NovaPessoaPage() {
   return (
     <RequireAdmin>
       <AdminLayout>
-        <h1 className="text-xl font-bold mb-4">Cadastrar Nova Pessoa</h1>
+        <h1 className="text-xl font-bold text-gray-800  mb-4">Cadastrar Nova Pessoa</h1>
         <FormularioPessoa />
       </AdminLayout>
     </RequireAdmin>

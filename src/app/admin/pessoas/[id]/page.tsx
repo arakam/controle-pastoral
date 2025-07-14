@@ -11,7 +11,7 @@ export default function EditarPessoaPage() {
   return (
     <RequireAdmin>
       <AdminLayout>
-        <h1 className="text-xl font-bold mb-4">Editar Pessoa</h1>
+        <h1 className="text-xl font-bold text-gray-800  mb-4">Editar Pessoa</h1>
         <FormularioPessoa id={id} />
       </AdminLayout>
     </RequireAdmin>

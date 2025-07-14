@@ -26,11 +26,11 @@ export default function Eventos() {
 
   return (
     <ParticipanteLayout>
-      <h1 className="text-2xl font-bold mb-4">Próximos Eventos</h1>
+      <h1 className="text-2xl font-bold text-gray-800  mb-4">Próximos Eventos</h1>
       <ul className="space-y-4">
         {eventos.map((ev) => (
           <li key={ev.id} className="p-4 bg-white shadow rounded">
-            <h2 className="text-lg font-semibold">{ev.nome}</h2>
+            <h2 className="text-lg font-semibold text-gray-800 ">{ev.nome}</h2>
             <p>📍 {ev.local}</p>
             <p>📅 {new Date(ev.data).toLocaleDateString('pt-BR')}</p>
           </li>

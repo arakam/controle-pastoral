@@ -24,7 +24,7 @@ export default function Dashboard() {
 
   return (
     <ParticipanteLayout>
-      <h1 className="text-2xl font-bold mb-4">Meu Perfil</h1>
+      <h1 className="text-2xl font-bold text-gray-800  mb-4">Meu Perfil</h1>
       {pessoa && (
         <div className="space-y-2">
           <p><strong>Nome:</strong> {pessoa.nome}</p>

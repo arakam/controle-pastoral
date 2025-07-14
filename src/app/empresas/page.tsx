@@ -64,7 +64,7 @@ export default function Empresas() {
 
   return (
     <ParticipanteLayout>
-      <h1 className="text-2xl font-bold mb-6 text-center text-blue-800">Empresas Cadastradas</h1>
+      <h1 className="text-2xl font-bold text-gray-800  mb-6 text-center text-blue-800">Empresas Cadastradas</h1>
 
       <div className="grid gap-6">
         {empresas.map((empresa) => (
@@ -73,7 +73,7 @@ export default function Empresas() {
             className="bg-white shadow-md rounded-xl p-6 flex items-center justify-between"
           >
             <div className="flex-1">
-              <h2 className="text-xl font-bold text-gray-800">{empresa.nome}</h2>
+              <h2 className="text-xl font-bold text-gray-800  text-gray-800">{empresa.nome}</h2>
               <p className="text-gray-600 mt-1">{empresa.descricao}</p>
 
               <div className="mt-4 flex gap-2 flex-wrap">

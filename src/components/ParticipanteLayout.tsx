@@ -20,7 +20,7 @@ export default function ParticipanteLayout({ children }: { children: React.React
     <div className="min-h-screen flex flex-col bg-gray-100">
       {/* Cabeçalho */}
       <header className="bg-white shadow px-4 py-3 flex justify-between items-center">
-        <h1 className="text-lg font-bold text-gray-800">Controle Pastoral</h1>
+        <h1 className="text-lg font-bold text-gray-800  text-gray-800">Controle Pastoral</h1>
         <div className="text-sm text-gray-600 flex items-center gap-2">
           <span className="hidden sm:inline">{session?.user?.email}</span>
           <BotaoLogout />

@@ -77,7 +77,7 @@ export default function CadastroForm() {
       >
         <div className="text-center">
           <UserPlus className="mx-auto h-10 w-10 text-blue-600 mb-2" />
-          <h1 className="text-2xl font-bold text-gray-800">Cadastro de Participante</h1>
+          <h1 className="text-2xl font-bold text-gray-800  text-gray-800">Cadastro de Participante</h1>
         </div>
 
         {mensagem && (

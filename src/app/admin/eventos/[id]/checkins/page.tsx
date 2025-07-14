@@ -51,7 +51,7 @@ export default function ListaCheckinsPorEvento() {
       <AdminLayout>
         <div className="flex items-center gap-2 mb-6">
           <UserCheck className="w-6 h-6 text-green-600" />
-          <h1 className="text-2xl font-bold text-gray-800">Check-ins do Evento</h1>
+          <h1 className="text-2xl font-bold text-gray-800  text-gray-800">Check-ins do Evento</h1>
         </div>
 
         {erro && <p className="text-red-500 mb-4">{erro}</p>}
@@ -65,7 +65,7 @@ export default function ListaCheckinsPorEvento() {
                 key={c.id}
                 className="bg-gray-100 rounded-lg p-4 shadow-sm hover:shadow transition"
               >
-                <h3 className="text-lg font-semibold text-gray-800">{c.pessoa.nome}</h3>
+                <h3 className="text-lg font-semibold text-gray-800  text-gray-800">{c.pessoa.nome}</h3>
                 <p className="text-sm text-gray-600 mt-1 flex items-center gap-1">
                   📞 {c.pessoa.telefone}
                 </p>

@@ -60,7 +60,7 @@ export default function LoginPage() {
         </div>
 
         {/* Mensagem de boas-vindas */}
-        <p className="text-lg font-semibold text-blue-900">
+        <p className="text-lg font-semibold text-gray-800  text-blue-900">
           Seja um membro da nossa pastoral e faça parte dessa jornada de propósitos.
         </p>
 
@@ -91,7 +91,7 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={carregando}
-            className="w-full bg-blue-700 text-white py-2 rounded-md font-semibold hover:bg-blue-800 disabled:opacity-50 flex justify-center items-center gap-2"
+            className="w-full bg-blue-700 text-white py-2 rounded-md font-semibold text-gray-800  hover:bg-blue-800 disabled:opacity-50 flex justify-center items-center gap-2"
           >
             {carregando ? (
               <>

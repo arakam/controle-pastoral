@@ -64,7 +64,7 @@ export default function CheckinPage() {
       >
         <div className="text-center">
           <QrCode className="mx-auto h-10 w-10 text-green-600 mb-2" />
-          <h1 className="text-2xl font-bold text-gray-800">Check-in</h1>
+          <h1 className="text-2xl font-bold text-gray-800  text-gray-800">Check-in</h1>
         </div>
 
         {mensagem && (

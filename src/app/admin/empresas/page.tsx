@@ -39,7 +39,7 @@ export default function ListaEmpresas() {
   return (
     <RequireAdmin>
       <AdminLayout>
-        <h1 className="text-center text-xl font-bold text-blue-700 mb-6">
+        <h1 className="text-center text-xl font-bold text-gray-800  text-blue-700 mb-6">
           Empresas Cadastradas
         </h1>
 
@@ -50,7 +50,7 @@ export default function ListaEmpresas() {
               className="bg-white rounded-2xl shadow p-4 flex justify-between items-center border border-gray-100"
             >
               <div className="flex-1">
-                <h2 className="font-semibold text-base text-gray-800">
+                <h2 className="font-semibold text-gray-800  text-base text-gray-800">
                   {empresa.nome}
                 </h2>
                 <p className="text-sm text-gray-600 mb-3">

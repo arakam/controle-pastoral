@@ -6,7 +6,7 @@ export default function NovaEmpresaPage() {
   return (
     <RequireAdmin>
       <AdminLayout>
-        <h1 className="text-xl font-bold mb-4">Cadastrar Empresa</h1>
+        <h1 className="text-xl font-bold text-gray-800  mb-4">Cadastrar Empresa</h1>
         <FormularioEmpresa />
       </AdminLayout>
     </RequireAdmin>

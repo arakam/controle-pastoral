@@ -11,7 +11,7 @@ export default function EditarEmpresaPage() {
   return (
     <RequireAdmin>
       <AdminLayout>
-        <h1 className="text-xl font-bold mb-4">Editar Empresa</h1>
+        <h1 className="text-xl font-bold text-gray-800  mb-4">Editar Empresa</h1>
         <FormularioEmpresa id={id} />
       </AdminLayout>
     </RequireAdmin>
