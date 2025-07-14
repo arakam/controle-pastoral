@@ -42,7 +42,7 @@ export default function LoginPage() {
     const tipo = pessoas[0].tipo
 
     if (tipo === 'administrador') {
-      router.push('/admin/eventos')
+      router.push('/admin')
     } else {
       router.push('/dashboard')
     }

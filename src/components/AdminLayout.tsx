@@ -3,16 +3,23 @@
 import { ReactNode } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+
 import {
-  CalendarDays,
-  UserPlus,
-  LogOut,
+  CalendarDays,   // Eventos
+  UserRound,      // Pessoas
+  Building2,      // Empresas
+  LogOut,         // Sair
+  Home,           // Início
 } from 'lucide-react'
+
 import BotaoLogout from './BotaoLogout'
 
+// Lista de links do menu inferior
 const navLinks = [
+  { href: '/admin', label: 'Início', icon: Home },
   { href: '/admin/eventos', label: 'Eventos', icon: CalendarDays },
-  { href: '/cadastro', label: 'Cadastrar', icon: UserPlus },
+  { href: '/admin/pessoas', label: 'Pessoas', icon: UserRound },
+  { href: '/admin/empresas', label: 'Empresas', icon: Building2 },
 ]
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
@@ -20,14 +27,15 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
+      {/* Conteúdo principal */}
       <main className="flex-grow px-4 pt-4 pb-20 max-w-4xl mx-auto w-full">
         {children}
       </main>
 
-      {/* Menu inferior estilo app */}
+      {/* Menu inferior fixo */}
       <nav className="fixed bottom-0 left-0 right-0 bg-white border-t shadow z-10 flex justify-around items-center h-16">
         {navLinks.map(({ href, label, icon: Icon }) => {
-          const ativo = pathname.startsWith(href)
+          const ativo = pathname === href || pathname.startsWith(href + '/')
           return (
             <Link
               key={href}
@@ -42,7 +50,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
           )
         })}
 
-        {/* Botão de logout como ícone */}
+        {/* Botão Sair */}
         <button
           onClick={() => document.getElementById('logout-btn')?.click()}
           className="flex flex-col items-center text-xs text-red-500 hover:text-red-600"
@@ -51,7 +59,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
           Sair
         </button>
 
-        {/* Componente oculto para reaproveitar BotaoLogout */}
+        {/* Componente de logout escondido */}
         <div className="hidden">
           <BotaoLogout />
         </div>
