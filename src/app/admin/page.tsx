@@ -41,7 +41,7 @@ export default function AdminHome() {
   return (
     <RequireAdmin>
       <AdminLayout>
-        <h1 className="text-xl font-bold mb-4">
+        <h1 className="text-xl font-bold text-gray-800 mb-4">
           Olá, {session?.user?.email}! 👋
         </h1>
 
@@ -51,7 +51,7 @@ export default function AdminHome() {
             <CalendarDays className="w-6 h-6 text-blue-600" />
             <div>
               <p className="text-sm text-gray-600">Eventos futuros</p>
-              <p className="text-lg font-bold">{proximosEventos.length}</p>
+              <p className="text-lg font-bold text-gray-800">{proximosEventos.length}</p>
             </div>
           </Link>
 
@@ -59,7 +59,7 @@ export default function AdminHome() {
             <UserRound className="w-6 h-6 text-blue-600" />
             <div>
               <p className="text-sm text-gray-600">Pessoas cadastradas</p>
-              <p className="text-lg font-bold">{totalPessoas}</p>
+              <p className="text-lg font-bold text-gray-800">{totalPessoas}</p>
             </div>
           </Link>
 
@@ -67,18 +67,18 @@ export default function AdminHome() {
             <Building2 className="w-6 h-6 text-blue-600" />
             <div>
               <p className="text-sm text-gray-600">Empresas cadastradas</p>
-              <p className="text-lg font-bold">{totalEmpresas}</p>
+              <p className="text-lg font-bold text-gray-800">{totalEmpresas}</p>
             </div>
           </Link>
         </div>
 
         {/* Próximos eventos */}
         <div className="mb-6">
-          <h2 className="text-lg font-semibold mb-2">Próximos eventos</h2>
+          <h2 className="text-lg font-semibold text-gray-800 mb-2">Próximos eventos</h2>
           <ul className="space-y-2">
             {proximosEventos.map(evento => (
               <li key={evento.id} className="bg-white p-4 rounded-xl shadow border">
-                <p className="font-bold">{evento.nome}</p>
+                <p className="font-bold text-gray-800">{evento.nome}</p>
                 <p className="text-sm text-gray-500">{new Date(evento.data).toLocaleDateString()} - {evento.local}</p>
               </li>
             ))}
