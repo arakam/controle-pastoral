@@ -4,17 +4,18 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useSupabase } from '@/components/SupabaseProvider'
 import BotaoLogout from './BotaoLogout'
-import { Home, Calendar, Building2 } from 'lucide-react'
+import { Home, Calendar, Building2, User } from 'lucide-react'
 
 export default function ParticipanteLayout({ children }: { children: React.ReactNode }) {
   const { session } = useSupabase()
   const pathname = usePathname()
 
   const menu = [
-    { label: 'Perfil', path: '/dashboard', icon: <Home className="w-5 h-5" /> },
-    { label: 'Eventos', path: '/eventos', icon: <Calendar className="w-5 h-5" /> },
-    { label: 'Empresas', path: '/empresas', icon: <Building2 className="w-5 h-5" /> },
-  ]
+  { label: 'Home', path: '/dashboard', icon: <Home className="w-5 h-5" /> },
+  { label: 'Eventos', path: '/eventos', icon: <Calendar className="w-5 h-5" /> },
+  { label: 'Empresas', path: '/empresas', icon: <Building2 className="w-5 h-5" /> },
+  { label: 'Perfil', path: '/perfil', icon: <User className="w-5 h-5" /> },
+]
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-100">
