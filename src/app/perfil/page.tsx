@@ -67,7 +67,7 @@ export default function Perfil() {
         ) : (
           <>
             <div>
-              <label className="block text-sm text-gray-600 mb-1">Nome completo</label>
+              <label className="block text-sm text-black-600 mb-1">Nome completo</label>
               <input
                 type="text"
                 value={nome}

@@ -49,10 +49,16 @@ export default function ListaCheckinsPorEvento() {
   return (
     <RequireAdmin>
       <AdminLayout>
-        <div className="flex items-center gap-2 mb-6">
-          <UserCheck className="w-6 h-6 text-green-600" />
-          <h1 className="text-2xl font-bold text-gray-800  text-gray-800">Check-ins do Evento</h1>
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 gap-2">
+          <div className="flex items-center gap-2">
+            <UserCheck className="w-6 h-6 text-green-600" />
+            <h1 className="text-2xl font-bold text-gray-800">Check-ins do Evento</h1>
+          </div>
+          <div className="text-sm bg-green-100 text-green-700 px-4 py-1 rounded-full shadow-sm font-medium">
+            Total: {checkins.length}
+          </div>
         </div>
+
 
         {erro && <p className="text-red-500 mb-4">{erro}</p>}
 
