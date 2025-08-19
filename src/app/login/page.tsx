@@ -131,6 +131,20 @@ export default function LoginPage() {
           </button>
         </form>
 
+        {/* Link para cadastrar usuário */}
+        <div className="text-center">
+          <p className="text-sm text-gray-600 mb-2">
+            Já está cadastrado na tabela de pessoas?
+          </p>
+          <button
+            type="button"
+            onClick={() => router.push('/cadastrar-usuario')}
+            className="text-blue-600 hover:text-blue-800 text-sm underline"
+          >
+            Criar usuário para acessar o app
+          </button>
+        </div>
+
         {mensagem && <p className="text-red-600 text-sm">{mensagem}</p>}
 
         {/* Rodapé bíblico */}
