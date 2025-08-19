@@ -28,6 +28,8 @@ export default function FormularioEmpresa({ id }: Props) {
     telefone: string
     whatsapp: string
     email: string
+    site?: string
+    instagram?: string
     descricao: string
     pessoa_id: string | null
   }>({
@@ -37,6 +39,8 @@ export default function FormularioEmpresa({ id }: Props) {
     telefone: '',
     whatsapp: '',
     email: '',
+    site: '',
+    instagram: '',
     descricao: '',
     pessoa_id: null,
   })
@@ -61,7 +65,7 @@ export default function FormularioEmpresa({ id }: Props) {
 
         const { data, error } = await supabase
           .from('empresas')
-          .select('nome, segmento, cidade, telefone, whatsapp, email, descricao, pessoa_id, logo, galeria')
+          .select('nome, segmento, cidade, telefone, whatsapp, email, site, instagram, descricao, pessoa_id, logo, galeria')
           .eq('id', id)
           .single()
 
@@ -423,6 +427,30 @@ export default function FormularioEmpresa({ id }: Props) {
            value={form.email}
            onChange={(e) => setForm({ ...form, email: e.target.value })}
          />
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label className="block text-sm font-medium">Site</label>
+          <input
+            type="url"
+            placeholder="https://exemplo.com"
+            className="w-full border border-gray-400 rounded px-3 py-2 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600"
+            value={form.site || ''}
+            onChange={(e) => setForm({ ...form, site: e.target.value })}
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium">Instagram</label>
+          <input
+            type="text"
+            placeholder="@usuario ou usuario"
+            className="w-full border border-gray-400 rounded px-3 py-2 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600"
+            value={form.instagram || ''}
+            onChange={(e) => setForm({ ...form, instagram: e.target.value })}
+          />
+        </div>
       </div>
 
       <div>

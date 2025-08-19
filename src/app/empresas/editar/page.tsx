@@ -16,6 +16,8 @@ interface Empresa {
   telefone: string
   whatsapp: string
   email: string
+  site?: string
+  instagram?: string
   descricao: string
   logo?: string
   galeria?: string[]
@@ -58,7 +60,7 @@ export default function EditarEmpresa() {
         // Buscar a empresa vinculada à pessoa
         const { data: empresaData, error: empresaError } = await supabase
           .from('empresas')
-          .select('id, nome, segmento, cidade, telefone, whatsapp, email, descricao, logo, galeria')
+          .select('id, nome, segmento, cidade, telefone, whatsapp, email, site, instagram, descricao, logo, galeria')
           .eq('pessoa_id', pessoa.id)
           .single()
 
@@ -243,6 +245,34 @@ export default function EditarEmpresa() {
               onChange={(e) => setEmpresa({ ...empresa, email: e.target.value })}
               className="w-full border border-gray-400 rounded-lg px-4 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600"
             />
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Site
+              </label>
+              <input
+                type="url"
+                placeholder="https://exemplo.com"
+                value={empresa.site || ''}
+                onChange={(e) => setEmpresa({ ...empresa, site: e.target.value })}
+                className="w-full border border-gray-400 rounded-lg px-4 py-2 text-sm text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Instagram
+              </label>
+              <input
+                type="text"
+                placeholder="@usuario ou usuario"
+                value={empresa.instagram || ''}
+                onChange={(e) => setEmpresa({ ...empresa, instagram: e.target.value })}
+                className="w-full border border-gray-400 rounded-lg px-4 py-2 text-sm text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600"
+              />
+            </div>
           </div>
 
           <div>

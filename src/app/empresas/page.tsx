@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import ParticipanteLayout from '@/components/ParticipanteLayout'
-import { Phone, Mail, MessageCircle, Filter, X } from 'lucide-react'
+import { Phone, Mail, MessageCircle, Filter, X, Globe, Instagram } from 'lucide-react'
 import { useSupabase } from '@/components/SupabaseProvider'
 
 interface Empresa {
@@ -13,6 +13,8 @@ interface Empresa {
   telefone: string
   whatsapp: string
   email: string
+  site?: string
+  instagram?: string
   segmento?: string
   cidade?: string
   logo?: string
@@ -33,7 +35,7 @@ export default function Empresas() {
   const carregarEmpresas = async () => {
     let query = supabase
       .from('empresas')
-      .select('id, nome, descricao, telefone, whatsapp, email, segmento, cidade, logo, galeria')
+      .select('id, nome, descricao, telefone, whatsapp, email, site, instagram, segmento, cidade, logo, galeria')
       .order('nome', { ascending: true })
 
     if (nomeFiltro) {
@@ -171,14 +173,14 @@ export default function Empresas() {
                   {empresa.cidade && <span className="ml-2">| Cidade: {empresa.cidade}</span>}
                 </div>
 
-                <div className="mt-4 flex gap-2 flex-wrap">
+                <div className="mt-4 flex gap-3 flex-wrap">
                   {empresa.telefone && (
                     <a
                       href={`tel:${empresa.telefone}`}
-                      className="bg-blue-600 text-white px-4 py-2 rounded-md flex items-center gap-2 text-sm hover:bg-blue-700"
+                      className="bg-blue-600 text-white p-3 rounded-full hover:bg-blue-700 transition-colors"
+                      title={`Ligar para ${empresa.telefone}`}
                     >
-                      <Phone size={16} />
-                      {empresa.telefone}
+                      <Phone size={18} />
                     </a>
                   )}
                   {empresa.whatsapp && (
@@ -186,19 +188,41 @@ export default function Empresas() {
                       href={`https://wa.me/55${empresa.whatsapp}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-green-600 text-white px-4 py-2 rounded-md flex items-center gap-2 text-sm hover:bg-green-700"
+                      className="bg-green-600 text-white p-3 rounded-full hover:bg-green-700 transition-colors"
+                      title="Abrir WhatsApp"
                     >
-                      <MessageCircle size={16} />
-                      WhatsApp
+                      <MessageCircle size={18} />
                     </a>
                   )}
                   {empresa.email && (
                     <a
                       href={`mailto:${empresa.email}`}
-                      className="bg-blue-600 text-white px-4 py-2 rounded-md flex items-center gap-2 text-sm hover:bg-blue-700"
+                      className="bg-blue-500 text-white p-3 rounded-full hover:bg-blue-600 transition-colors"
+                      title="Enviar e-mail"
                     >
-                      <Mail size={16} />
-                      Email
+                      <Mail size={18} />
+                    </a>
+                  )}
+                  {empresa.site && (
+                    <a
+                      href={empresa.site.startsWith('http') ? empresa.site : `https://${empresa.site}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-purple-600 text-white p-3 rounded-full hover:bg-purple-700 transition-colors"
+                      title="Visitar site"
+                    >
+                      <Globe size={18} />
+                    </a>
+                  )}
+                  {empresa.instagram && (
+                    <a
+                      href={`https://instagram.com/${empresa.instagram.replace('@', '')}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-gradient-to-r from-purple-500 to-pink-500 text-white p-3 rounded-full hover:from-purple-600 hover:to-pink-600 transition-colors"
+                      title="Ver Instagram"
+                    >
+                      <Instagram size={18} />
                     </a>
                   )}
                 </div>
