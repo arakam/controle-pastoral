@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { Phone, Mail, MessageSquare, Edit, Plus, Trash2 } from 'lucide-react'
+import { Phone, Mail, MessageSquare, Edit, Plus, Trash2, Globe, Instagram } from 'lucide-react'
 import AdminLayout from '@/components/AdminLayout'
 import RequireAdmin from '@/components/RequireAdmin'
 import { useSupabase } from '@/components/SupabaseProvider'
@@ -14,6 +14,8 @@ interface Empresa {
   telefone?: string
   whatsapp?: string
   email?: string
+  site?: string
+  instagram?: string
   segmento?: string
   cidade?: string
   logo?: string
@@ -28,7 +30,7 @@ export default function ListaEmpresas() {
   const carregarEmpresas = async () => {
     const { data, error } = await supabase
       .from('empresas')
-      .select('id, nome, descricao, telefone, whatsapp, email, segmento, cidade, logo, galeria')
+      .select('id, nome, descricao, telefone, whatsapp, email, site, instagram, segmento, cidade, logo, galeria')
       .order('nome', { ascending: true })
 
     if (error) {
@@ -179,16 +181,18 @@ export default function ListaEmpresas() {
                       <a
                         href={`tel:${empresa.telefone}`}
                         className="bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 transition-colors"
+                        title={`Ligar para ${empresa.telefone}`}
                       >
                         <Phone className="w-4 h-4" />
                       </a>
                     )}
                     {empresa.whatsapp && (
                       <a
-                        href={`https://wa.me/${empresa.whatsapp.replace(/\D/g, '')}`}
+                        href={`https://wa.me/55${empresa.whatsapp}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="bg-green-600 text-white p-2 rounded-lg hover:bg-green-700 transition-colors"
+                        title="Abrir WhatsApp"
                       >
                         <MessageSquare className="w-4 h-4" />
                       </a>
@@ -196,9 +200,32 @@ export default function ListaEmpresas() {
                     {empresa.email && (
                       <a
                         href={`mailto:${empresa.email}`}
-                        className="bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 transition-colors"
+                        className="bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600 transition-colors"
+                        title="Enviar e-mail"
                       >
                         <Mail className="w-4 h-4" />
+                      </a>
+                    )}
+                    {empresa.site && (
+                      <a
+                        href={empresa.site.startsWith('http') ? empresa.site : `https://${empresa.site}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-purple-600 text-white p-2 rounded-lg hover:bg-purple-700 transition-colors"
+                        title="Visitar site"
+                      >
+                        <Globe className="w-4 h-4" />
+                      </a>
+                    )}
+                    {empresa.instagram && (
+                      <a
+                        href={`https://instagram.com/${empresa.instagram.replace('@', '')}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-gradient-to-r from-purple-500 to-pink-500 text-white p-2 rounded-lg hover:from-purple-600 hover:to-pink-600 transition-colors"
+                        title="Ver Instagram"
+                      >
+                        <Instagram className="w-4 h-4" />
                       </a>
                     )}
                   </div>
