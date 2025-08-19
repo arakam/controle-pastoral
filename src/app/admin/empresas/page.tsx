@@ -76,7 +76,7 @@ export default function ListaEmpresas() {
         // Deletar imagens da galeria se existirem
         if (empresa.galeria && empresa.galeria.length > 0) {
           try {
-            const galeriaPaths = empresa.galeria.map(url => url.split('/').pop()).filter(Boolean)
+            const galeriaPaths = empresa.galeria.map((url: string) => url.split('/').pop()).filter(Boolean)
             if (galeriaPaths.length > 0) {
               await supabase.storage
                 .from('empresa-images')
