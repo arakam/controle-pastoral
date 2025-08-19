@@ -195,14 +195,14 @@ export default function ListaPessoas() {
         >
           <div className="bg-white p-4 rounded-xl shadow space-y-4">
             <div>
-              <label className="block text-sm text-gray-600 mb-1">
+              <label className="block text-sm text-gray-700 font-medium mb-1">
                 Participantes de quais eventos?
               </label>
               <select
                 multiple
                 value={eventosSelecionados}
                 onChange={handleSelecionarEventos}
-                className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm h-48"
+                className="w-full border border-gray-400 rounded-md px-3 py-2 text-sm h-48 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600"
               >
                 <option value="nenhum">Quem nunca participou de nenhum evento</option>
                 {eventos.map((evento) => (
@@ -258,11 +258,11 @@ export default function ListaPessoas() {
                 </Link>
               </div>
 
-              <p className="text-sm text-gray-600 flex items-center gap-1">
+              <p className="text-sm text-gray-700 flex items-center gap-1">
                 <Phone className="w-4 h-4" />
                 {pessoa.telefone || 'Sem telefone'}
               </p>
-              <p className="text-sm text-gray-600 flex items-center gap-1">
+              <p className="text-sm text-gray-700 flex items-center gap-1">
                 <Mail className="w-4 h-4" />
                 {pessoa.email || 'Sem e-mail'}
               </p>

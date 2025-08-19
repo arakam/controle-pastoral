@@ -291,14 +291,14 @@ export default function FormularioEmpresa({ id }: Props) {
             
             <div className="relative pessoa-search-container">
               <div className="flex gap-2 mb-2">
-                <input
-                  type="text"
-                  placeholder="🔍 Buscar por nome, telefone ou email..."
-                  value={busca}
-                  onChange={(e) => setBusca(e.target.value)}
-                  onFocus={() => setMostrarDropdown(true)}
-                  className="flex-1 border rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600"
-                />
+                               <input
+                 type="text"
+                 placeholder="🔍 Buscar por nome, telefone ou email..."
+                 value={busca}
+                 onChange={(e) => setBusca(e.target.value)}
+                 onFocus={() => setMostrarDropdown(true)}
+                 className="flex-1 border border-gray-400 rounded px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600"
+               />
                 {pessoa && (
                   <button
                     type="button"
@@ -367,71 +367,71 @@ export default function FormularioEmpresa({ id }: Props) {
       {/* Campos da empresa */}
       <div>
         <label className="block text-sm font-medium">Nome da Empresa</label>
-        <input
-          required
-          className="w-full border rounded px-3 py-2"
-          value={form.nome}
-          onChange={(e) => setForm({ ...form, nome: e.target.value })}
-        />
+                 <input
+           required
+           className="w-full border border-gray-400 rounded px-3 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600"
+           value={form.nome}
+           onChange={(e) => setForm({ ...form, nome: e.target.value })}
+         />
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label className="block text-sm font-medium">Segmento</label>
-          <input
-            className="w-full border rounded px-3 py-2"
-            value={form.segmento}
-            onChange={(e) => setForm({ ...form, segmento: e.target.value })}
-          />
+                     <input
+             className="w-full border border-gray-400 rounded px-3 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600"
+             value={form.segmento}
+             onChange={(e) => setForm({ ...form, segmento: e.target.value })}
+           />
         </div>
 
         <div>
           <label className="block text-sm font-medium">Cidade</label>
-          <input
-            className="w-full border rounded px-3 py-2"
-            value={form.cidade}
-            onChange={(e) => setForm({ ...form, cidade: e.target.value })}
-          />
+                     <input
+             className="w-full border border-gray-400 rounded px-3 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600"
+             value={form.cidade}
+             onChange={(e) => setForm({ ...form, cidade: e.target.value })}
+           />
         </div>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label className="block text-sm font-medium">Telefone</label>
-          <input
-            className="w-full border rounded px-3 py-2"
-            value={form.telefone}
-            onChange={(e) => setForm({ ...form, telefone: e.target.value })}
-          />
+                     <input
+             className="w-full border border-gray-400 rounded px-3 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600"
+             value={form.telefone}
+             onChange={(e) => setForm({ ...form, telefone: e.target.value })}
+           />
         </div>
 
         <div>
           <label className="block text-sm font-medium">WhatsApp</label>
-          <input
-            className="w-full border rounded px-3 py-2"
-            value={form.whatsapp}
-            onChange={(e) => setForm({ ...form, whatsapp: e.target.value })}
-          />
+                     <input
+             className="w-full border border-gray-400 rounded px-3 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600"
+             value={form.whatsapp}
+             onChange={(e) => setForm({ ...form, whatsapp: e.target.value })}
+           />
         </div>
       </div>
 
       <div>
         <label className="block text-sm font-medium">E-mail</label>
-        <input
-          type="email"
-          className="w-full border rounded px-3 py-2"
-          value={form.email}
-          onChange={(e) => setForm({ ...form, email: e.target.value })}
-        />
+                 <input
+           type="email"
+           className="w-full border border-gray-400 rounded px-3 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600"
+           value={form.email}
+           onChange={(e) => setForm({ ...form, email: e.target.value })}
+         />
       </div>
 
       <div>
         <label className="block text-sm font-medium">Descrição</label>
-        <textarea
-          className="w-full border rounded px-3 py-2"
-          value={form.descricao}
-          onChange={(e) => setForm({ ...form, descricao: e.target.value })}
-        />
+                 <textarea
+           className="w-full border border-gray-400 rounded px-3 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600"
+           value={form.descricao}
+           onChange={(e) => setForm({ ...form, descricao: e.target.value })}
+         />
       </div>
 
       {/* Upload de Imagens */}

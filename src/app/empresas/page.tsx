@@ -80,7 +80,7 @@ export default function Empresas() {
           placeholder="Buscar por nome"
           value={nomeFiltro}
           onChange={(e) => setNomeFiltro(e.target.value)}
-          className="flex-1 border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600"
+          className="flex-1 border border-gray-400 rounded-md px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600"
         />
         <button
           onClick={() => setMostrarAvancado((v) => !v)}
@@ -98,24 +98,24 @@ export default function Empresas() {
       >
         <div className="bg-white p-4 rounded-xl shadow space-y-4 mx-2">
           <div>
-            <label className="block text-sm text-gray-600 mb-1">Segmento</label>
+            <label className="block text-sm text-gray-700 font-medium mb-1">Segmento</label>
             <input
               type="text"
               value={segmentoFiltro}
               onChange={(e) => setSegmentoFiltro(e.target.value)}
               placeholder="Ex: Contabilidade, Eventos"
-              className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600"
+              className="w-full border border-gray-400 rounded-md px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600"
             />
           </div>
 
           <div>
-            <label className="block text-sm text-gray-600 mb-1">Cidade</label>
+            <label className="block text-sm text-gray-700 font-medium mb-1">Cidade</label>
             <input
               type="text"
               value={cidadeFiltro}
               onChange={(e) => setCidadeFiltro(e.target.value)}
               placeholder="Ex: Curitiba"
-              className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600"
+              className="w-full border border-gray-400 rounded-md px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600"
             />
           </div>
 

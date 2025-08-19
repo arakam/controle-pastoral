@@ -67,24 +67,24 @@ export default function LoginPage() {
         {/* Formulário */}
         <form onSubmit={handleLogin} className="space-y-4">
           <div className="text-left">
-            <label className="text-sm text-gray-600">Login</label>
+            <label className="text-sm text-gray-700 font-medium">Login</label>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full border border-gray-300 p-2 rounded-md"
+              className="w-full border border-gray-400 p-3 rounded-md text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600"
             />
           </div>
 
           <div className="text-left">
-            <label className="text-sm text-gray-600">Senha</label>
+            <label className="text-sm text-gray-700 font-medium">Senha</label>
             <input
               type="password"
               value={senha}
               onChange={(e) => setSenha(e.target.value)}
               required
-              className="w-full border border-gray-300 p-2 rounded-md"
+              className="w-full border border-gray-400 p-3 rounded-md text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600"
             />
           </div>
 
