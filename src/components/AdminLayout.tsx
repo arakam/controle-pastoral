@@ -51,18 +51,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
         })}
 
         {/* Botão Sair */}
-        <button
-          onClick={() => document.getElementById('logout-btn')?.click()}
-          className="flex flex-col items-center text-xs text-red-500 hover:text-red-600"
-        >
-          <LogOut className="w-5 h-5 mb-1" />
-          Sair
-        </button>
-
-        {/* Componente de logout escondido */}
-        <div className="hidden">
-          <BotaoLogout />
-        </div>
+        <BotaoLogout />
       </nav>
     </div>
   )
