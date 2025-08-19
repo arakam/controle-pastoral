@@ -1,8 +1,9 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import ParticipanteLayout from '@/components/ParticipanteLayout'
-import { Phone, Mail, MessageCircle, Filter, X, Search } from 'lucide-react'
+import { Phone, Mail, MessageCircle, Filter, X } from 'lucide-react'
 import { useSupabase } from '@/components/SupabaseProvider'
 
 interface Empresa {
@@ -14,9 +15,12 @@ interface Empresa {
   email: string
   segmento?: string
   cidade?: string
+  logo?: string
+  galeria?: string[]
 }
 
 export default function Empresas() {
+  const router = useRouter()
   const { supabase } = useSupabase()
   const [empresas, setEmpresas] = useState<Empresa[]>([])
 
@@ -29,7 +33,7 @@ export default function Empresas() {
   const carregarEmpresas = async () => {
     let query = supabase
       .from('empresas')
-      .select('id, nome, descricao, telefone, whatsapp, email, segmento, cidade')
+      .select('id, nome, descricao, telefone, whatsapp, email, segmento, cidade, logo, galeria')
       .order('nome', { ascending: true })
 
     if (nomeFiltro) {
@@ -140,54 +144,78 @@ export default function Empresas() {
         {empresas.map((empresa) => (
           <div
             key={empresa.id}
-            className="bg-white shadow-md rounded-xl p-6 flex items-center justify-between"
+            className="bg-white shadow-md rounded-xl p-6 cursor-pointer hover:shadow-lg transition-shadow duration-200"
+            onClick={() => router.push(`/empresas/${empresa.id}`)}
           >
-            <div className="flex-1">
-              <h2 className="text-xl font-bold text-gray-800">{empresa.nome}</h2>
-              <p className="text-gray-600 mt-1">{empresa.descricao}</p>
-              <div className="mt-1 text-sm text-gray-500 italic">
-                {empresa.segmento && <span>Segmento: {empresa.segmento}</span>}
-                {empresa.cidade && <span className="ml-2">| Cidade: {empresa.cidade}</span>}
+            <div className="flex items-start gap-4">
+              {/* Logo da empresa */}
+              <div className="flex-shrink-0">
+                {empresa.logo ? (
+                  <img 
+                    src={empresa.logo} 
+                    alt={`Logo ${empresa.nome}`}
+                    className="w-20 h-20 object-cover rounded-lg border"
+                  />
+                ) : (
+                  <div className="w-20 h-20 bg-gray-100 rounded-lg border flex items-center justify-center">
+                    <span className="text-gray-400 text-xs text-center">Sem Logo</span>
+                  </div>
+                )}
               </div>
 
-              <div className="mt-4 flex gap-2 flex-wrap">
-                {empresa.telefone && (
-                  <a
-                    href={`tel:${empresa.telefone}`}
-                    className="bg-blue-600 text-white px-4 py-2 rounded-md flex items-center gap-2 text-sm hover:bg-blue-700"
-                  >
-                    <Phone size={16} />
-                  </a>
-                )}
-                {empresa.whatsapp && (
-                  <a
-                    href={`https://wa.me/55${empresa.whatsapp}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-blue-600 text-white px-4 py-2 rounded-md flex items-center gap-2 text-sm hover:bg-blue-700"
-                  >
-                    <MessageCircle size={16} />
-                  </a>
-                )}
-                {empresa.email && (
-                  <a
-                    href={`mailto:${empresa.email}`}
-                    className="bg-blue-600 text-white px-4 py-2 rounded-md flex items-center gap-2 text-sm hover:bg-blue-700"
-                  >
-                    <Mail size={16} />
-                  </a>
-                )}
+              <div className="flex-1">
+                <h2 className="text-xl font-bold text-gray-800">{empresa.nome}</h2>
+                <p className="text-gray-600 mt-1">{empresa.descricao}</p>
+                <div className="mt-1 text-sm text-gray-500 italic">
+                  {empresa.segmento && <span>Segmento: {empresa.segmento}</span>}
+                  {empresa.cidade && <span className="ml-2">| Cidade: {empresa.cidade}</span>}
+                </div>
+
+                <div className="mt-4 flex gap-2 flex-wrap">
+                  {empresa.telefone && (
+                    <a
+                      href={`tel:${empresa.telefone}`}
+                      className="bg-blue-600 text-white px-4 py-2 rounded-md flex items-center gap-2 text-sm hover:bg-blue-700"
+                    >
+                      <Phone size={16} />
+                      {empresa.telefone}
+                    </a>
+                  )}
+                  {empresa.whatsapp && (
+                    <a
+                      href={`https://wa.me/55${empresa.whatsapp}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-green-600 text-white px-4 py-2 rounded-md flex items-center gap-2 text-sm hover:bg-green-700"
+                    >
+                      <MessageCircle size={16} />
+                      WhatsApp
+                    </a>
+                  )}
+                  {empresa.email && (
+                    <a
+                      href={`mailto:${empresa.email}`}
+                      className="bg-blue-600 text-white px-4 py-2 rounded-md flex items-center gap-2 text-sm hover:bg-blue-700"
+                    >
+                      <Mail size={16} />
+                      Email
+                    </a>
+                  )}
+                </div>
               </div>
             </div>
 
-            <div className="ml-4">
-              <div className="bg-blue-100 p-4 rounded-full">
-                <Search className="h-8 w-8 text-blue-600" />
+            {/* Indicador de galeria */}
+            {empresa.galeria && empresa.galeria.length > 0 && (
+              <div className="mt-2 text-sm text-blue-600">
+                📸 {empresa.galeria.length} foto{empresa.galeria.length > 1 ? 's' : ''} disponível{empresa.galeria.length > 1 ? 'is' : ''}
               </div>
-            </div>
+            )}
           </div>
         ))}
       </div>
+      
+
     </ParticipanteLayout>
   )
 }

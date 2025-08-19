@@ -10,7 +10,7 @@ export default function RequireAuth({ children }: { children: React.ReactNode })
   const pathname = usePathname()
 
   // Rotas públicas que não exigem login
-  const rotasPublicas = ['/login', '/checkin', '/cadastro']
+  const rotasPublicas = ['/login', '/checkin', '/cadastro', '/empresas']
   const isPublica = rotasPublicas.some((path) => pathname.startsWith(path))
 
   useEffect(() => {
